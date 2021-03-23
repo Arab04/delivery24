@@ -32,7 +32,7 @@ public class LongPolling extends TelegramLongPollingBot{
 			
 			if(message.hasText()) {
 			    if(Messages.state.containsKey(id)) {
-				registration(id);
+				registration(id,message);
 			}
 			
 			else {
@@ -56,9 +56,9 @@ public class LongPolling extends TelegramLongPollingBot{
 		}
 	}
 	
-	public void registration(Long id) {
+	public void registration(Long id,Message message) {
 		try {
-			controller.registration(id, this);
+			controller.registration(id, this,message);
 		}catch(TelegramApiException e) {
 			e.printStackTrace();
 		}

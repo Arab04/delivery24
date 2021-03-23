@@ -63,12 +63,14 @@ public class MainController {
 				send.execute(Messages.mainMenu(id, "Thank you for registration"));
 				send.execute(Menus.mainMenu(id, "Main Menu", "Order", "Daily Orders", "Settings"));
 				Messages.state.put(id, State.COMMANDS);
+				repo.save(user);
 			}
 			else {
 				user.setAddress(message.getText());
 			send.execute(Messages.mainMenu(id, "Thank you for registration"));
 			send.execute(Menus.mainMenu(id, "Main Menu", "Order", "Daily Orders", "Settings"));
 			Messages.state.put(id, State.COMMANDS);
+			repo.save(user);
 			}
 			break;
 			

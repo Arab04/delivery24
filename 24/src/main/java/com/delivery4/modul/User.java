@@ -6,12 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Location;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Component
 @Table(name = "user_info")
 @Getter
 @Setter
