@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.telegram.telegrambots.meta.api.objects.Location;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,12 +27,11 @@ public class User {
 	
 	private String businessName;
 	
-	private Long longitude;
-	
-	private Long latitude;
+	private Location location;
 	
 	private String address;
 	
 	private String userName;
 	
+	private Long user_id;
 }
