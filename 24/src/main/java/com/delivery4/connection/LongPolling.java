@@ -29,8 +29,9 @@ public class LongPolling extends TelegramLongPollingBot{
 		if(update.hasMessage()) {
 			Message message = update.getMessage();
 			Long id = message.getChatId();
+			
 			if(message.hasText()) {
-			if(Messages.state.containsKey(id)) {
+			    if(Messages.state.containsKey(id)) {
 				registration(id);
 			}
 			

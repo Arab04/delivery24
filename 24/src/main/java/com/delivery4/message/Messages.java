@@ -24,4 +24,6 @@ public class Messages {
 		message.setText(text);
 		return message;
 	}
+	
+	
 }
