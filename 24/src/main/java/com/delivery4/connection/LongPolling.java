@@ -25,28 +25,20 @@ public class LongPolling extends TelegramLongPollingBot{
 	
 	@Override
 	public void onUpdateReceived(Update update) {
-		
-		if(update.hasMessage()) {
-			Message message = update.getMessage();
-			Long id = message.getChatId();
-			
-			if(message.hasText()) {
-			    if(Messages.state.containsKey(id)) {
-				registration(id,message);
+		if(update.hasMessage()) 
+			    if(Messages.state.containsKey(update.getMessage().getChatId())) {
+			    	registration(update.getMessage().getChatId(), update.getMessage());
 			}
 			
 			else {
 				SendMessage m = new SendMessage();
-						m.setChatId(id);
+						m.setChatId(update.getMessage().getChatId());
 						m.setText("Hi Send Your Name");
 				send(m);
-				Messages.state.put(id, State.SENDBUSINESS_NAME);
+				Messages.state.put(update.getMessage().getChatId(), State.SENDBUSINESS_NAME);
 			}
 				
-			}
 		}
-		
-	}
 	
 	public void send(SendMessage message) {
 		try {

@@ -37,21 +37,22 @@ public class MainController {
 			break;
 			
 		case SENDCONTACT:
+			user.setUser_id(message.getChatId());
 			user.setBusinessName(message.getText());
+			user.setUserName(message.getChat().getUserName());
 			send.execute(Menus.requestContact("Send your phone number", "Contact", id));
 			Messages.state.put(id, State.SENDLOCATION);
 			break;
 			
 		case SENDLOCATION:
 			if(message.hasContact()) {
-				user.setName(message.getContact().getFirstName());
-				user.setUserNumber(message.getContact().getPhoneNumber());
+				user.setContact(message.getContact());
 				send.execute(Menus.requestLocation("Send location of your business", "Location", id));
 				Messages.state.put(id, State.MAINMENU);
 			}
 			
 			else {
-				user.setUserNumber(message.getText());
+			user.setNumber(message.getText());
 			send.execute(Menus.requestLocation("Send location of your business", "Location", id));
 			Messages.state.put(id, State.MAINMENU);
 			}
