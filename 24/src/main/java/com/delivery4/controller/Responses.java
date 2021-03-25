@@ -37,7 +37,7 @@ public class Responses {
 		if(message.hasContact()) {
 			user.setContact(message.getContact());
 			send.execute(Menus.requestLocation("Send location of your business", "Location", id));
-			Messages.state.put(id, State.MAINMENU);
+			Messages.state.put(id, State.FINISH_REGISTRATION);
 		}
 		
 		else {
