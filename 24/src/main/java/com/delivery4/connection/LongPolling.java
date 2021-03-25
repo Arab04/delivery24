@@ -35,7 +35,7 @@ public class LongPolling extends TelegramLongPollingBot{
 						m.setChatId(update.getMessage().getChatId());
 						m.setText("Hi Send Your Name");
 				send(m);
-				Messages.state.put(update.getMessage().getChatId(), State.REGISTRATION);
+				Messages.state.put(update.getMessage().getChatId(), State.SENDBUSINESS_NAME);
 			}
 				
 		}
