@@ -43,4 +43,40 @@ public class Menus {
 				.build();
 		return a;
 	}
+	
+	public static SendMessage cancelOrder(Long id,String text,String button) {
+		SendMessage cancel = KButton.create(id)
+				.setText(text)
+				.row()
+				.button(button)
+				.endRow()
+				.build();
+		return cancel;
+	}
+	
+	public static SendMessage finishOrder(Long id,String text,String orderAgain,String backToMainMenu) {
+		SendMessage finish = KButton.create(id)
+				.setText(text)
+				.row()
+				.button(orderAgain)
+				.button(backToMainMenu)
+				.endRow()
+				.build();
+		return finish;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

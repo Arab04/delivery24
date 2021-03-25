@@ -27,7 +27,7 @@ public class LongPolling extends TelegramLongPollingBot{
 	public void onUpdateReceived(Update update) {
 		if(update.hasMessage()) 
 			    if(Messages.state.containsKey(update.getMessage().getChatId())) {
-			    	registration(update.getMessage().getChatId(), update.getMessage());
+			    	user(update.getMessage().getChatId(), update.getMessage());
 			}
 			
 			else {
@@ -35,7 +35,7 @@ public class LongPolling extends TelegramLongPollingBot{
 						m.setChatId(update.getMessage().getChatId());
 						m.setText("Hi Send Your Name");
 				send(m);
-				Messages.state.put(update.getMessage().getChatId(), State.SENDBUSINESS_NAME);
+				Messages.state.put(update.getMessage().getChatId(), State.REGISTRATION);
 			}
 				
 		}
@@ -48,9 +48,9 @@ public class LongPolling extends TelegramLongPollingBot{
 		}
 	}
 	
-	public void registration(Long id,Message message) {
+	public void user(Long id,Message message) {
 		try {
-			controller.registration(id, this,message);
+			controller.user(id, this,message);
 		}catch(TelegramApiException e) {
 			e.printStackTrace();
 		}
