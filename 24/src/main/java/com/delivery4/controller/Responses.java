@@ -6,9 +6,11 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import com.delivery4.Reprository.OrderReprository;
 import com.delivery4.Reprository.UserReprository;
 import com.delivery4.menus.Menus;
 import com.delivery4.message.Messages;
+import com.delivery4.modul.Order;
 import com.delivery4.modul.User;
 
 @Component
@@ -18,7 +20,13 @@ public class Responses {
 	private User user;
 	
 	@Autowired
-	private UserReprository repo;
+	private Order order;
+	
+	@Autowired
+	private UserReprository userRepo;
+	
+	@Autowired
+	private OrderReprository orderRepo;
 	
 	public void sendBusinessName(Long id,AbsSender send) throws TelegramApiException {
 		send.execute(Messages.message(id, "Send Business Name"));
@@ -50,13 +58,13 @@ public class Responses {
 	public void finishRegistration(Long id,AbsSender send, Message message) throws TelegramApiException {
 		if(message.hasLocation()) {
 			user.setLocation(message.getLocation());
-			repo.save(user);
+			userRepo.save(user);
 			send.execute(Menus.mainMenu(id, "Thank you for registration", "Order", "Daily Orders", "Settings"));
 			Messages.state.put(id, State.MAINMENU);
 		}
 		else {
 			user.setAddress(message.getText());
-			repo.save(user);
+			userRepo.save(user);
 		send.execute(Menus.mainMenu(id, "Thank you for registration", "Order", "Daily Orders", "Settings"));
 		Messages.state.put(id, State.MAINMENU);
 		}
@@ -69,6 +77,7 @@ public class Responses {
 			Messages.state.put(id, State.MAINMENU);
 		}
 		else {
+		order.setCustomerNumber(message.getText());
 		send.execute(Messages.message(id, "Please send customer order"));
 		Messages.state.put(id, State.CUSTOMER_ORDER);
 		
@@ -81,6 +90,8 @@ public class Responses {
 			Messages.state.put(id, State.MAINMENU);
 		}
 		else {
+			order.setCustomerOrder(message.getText());
+			orderRepo.save(order);
 			send.execute(Menus.finishOrder(id, "Our courier will be online within 3 minuts", "Order again","Finish order"));
 			Messages.state.put(id, State.RE_ORDER);
 		}
@@ -109,10 +120,6 @@ public class Responses {
 			Messages.state.put(id, State.CUSTOMER_NUMBER);
 		}
 	}
-	
-	
-	
-	
 	
 	
 	
