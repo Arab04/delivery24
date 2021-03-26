@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Setter;
 
 import lombok.Getter;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "orders")
 @Getter
 @Setter
+@Component
 public class Order extends AuditModel {
 	
 	@Id
