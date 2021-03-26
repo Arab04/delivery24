@@ -47,10 +47,6 @@ public class MainController {
 			response.customerOrder(id, send, message);
 			break;
 			
-		case FINISH_ORDER:
-			response.finishOrder(id, send);
-			break;
-			
 		case RE_ORDER:
 			response.reOrder(id, send, message);
 			break;

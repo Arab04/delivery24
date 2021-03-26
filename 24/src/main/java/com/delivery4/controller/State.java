@@ -2,8 +2,6 @@ package com.delivery4.controller;
 
 public enum State {
 
-	REGISTRATION,
-	ORDER,
 	SENDBUSINESS_NAME,
 	SENDCONTACT,
 	SENDLOCATION,
@@ -11,6 +9,5 @@ public enum State {
 	CUSTOMER_NUMBER,
 	CUSTOMER_ORDER,
 	RE_ORDER,
-	FINISH_ORDER,
 	FINISH_REGISTRATION
 }

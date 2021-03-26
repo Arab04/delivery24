@@ -69,7 +69,7 @@ public class Responses {
 			Messages.state.put(id, State.MAINMENU);
 		}
 		else {
-		send.execute(Messages.message(id, "Please send Cutomer Number"));
+		send.execute(Messages.message(id, "Please send customer order"));
 		Messages.state.put(id, State.CUSTOMER_ORDER);
 		
 		}
@@ -81,15 +81,9 @@ public class Responses {
 			Messages.state.put(id, State.MAINMENU);
 		}
 		else {
-		    send.execute(Messages.message(id, "Please send customer order"));
-		    Messages.state.put(id, State.FINISH_ORDER);
+			send.execute(Menus.finishOrder(id, "Our courier will be online within 3 minuts", "Order again","Finish order"));
+			Messages.state.put(id, State.RE_ORDER);
 		}
-	}
-	
-	
-	public void finishOrder(Long id, AbsSender send) throws TelegramApiException {
-		send.execute(Menus.finishOrder(id, "Our courier will be online within 3 minuts", "Order again","Finish order"));
-		Messages.state.put(id, State.RE_ORDER);
 	}
 	
 	public void reOrder(Long id,AbsSender send, Message message) throws TelegramApiException {
@@ -111,7 +105,7 @@ public class Responses {
 	
 	public void mainMenu(Long id,Message message,AbsSender send) throws TelegramApiException {
 		if(message.getText().equals("Order")) {
-			send.execute(Menus.cancelOrder(id, "use cancel button to cancel order", "Cancel"));
+			send.execute(Menus.cancelOrder(id, "Please send customer number", "Cancel"));
 			Messages.state.put(id, State.CUSTOMER_NUMBER);
 		}
 	}
